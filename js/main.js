@@ -166,6 +166,43 @@
 		navBoxToggleClass: false
   });
 
-
+	$("#copyMomo").click(function () {
+		// Lấy nội dung từ thẻ p
+		let text = $("#sdtmomo").text();
+	
+		// Tạo một phần tử input tạm thời để sao chép
+		let tempInput = $("<input>");
+		$("main").append(tempInput);
+		tempInput.val(text).select();
+	
+		// Thực hiện lệnh sao chép
+		document.execCommand("copy");
+	
+		// Xóa phần tử input tạm thời
+		tempInput.remove();
+	
+		// Hiển thị nội dung đã sao chép trong modal
+		$("#copiedMomo").text(text);
+		$("#copyModalMomo").modal('show');
+	});
+	$("#copyVietcom").click(function () {
+		// Lấy nội dung từ thẻ p
+		let text = $("#stkvietcom").text();
+	
+		// Tạo một phần tử input tạm thời để sao chép
+		let tempInput = $("<input>");
+		$("main").append(tempInput);
+		tempInput.val(text).select();
+	
+		// Thực hiện lệnh sao chép
+		document.execCommand("copy");
+	
+		// Xóa phần tử input tạm thời
+		tempInput.remove();
+	
+		// Hiển thị nội dung đã sao chép trong modal
+		$("#copiedVietcom").text(text);
+		$("#copyModalVietcom").modal('show');
+	});
 
 })()
