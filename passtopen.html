@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Password</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>pass là 123456</h1>
+    <div class="container mt-5">
+        <div id="protected-div" class="bg-primary text-white p-5 text-center" style="cursor: pointer;">
+            Nhấn vào đây để nhập mật khẩu
+        </div>
+        <div id="unlocked-div" class="bg-success text-white p-5 text-center d-none">
+            Bạn đã nhập đúng mật khẩu!
+        </div>
+    </div>
+
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordModalLabel">Nhập Mật Khẩu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="password-input" class="form-label">Mật Khẩu:</label>
+                        <input type="password" class="form-control" id="password-input">
+                    </div>
+                    <div id="error-message" class="text-danger d-none">Sai mật khẩu, thử lại.</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="submit-password">Xác nhận</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctPassword = "123456"; // Đặt mật khẩu chính xác ở đây
+
+        // Mở modal khi nhấn vào div
+        $('#protected-div').on('click', function() {
+            $('#passwordModal').modal('show');
+        });
+
+        // Xác minh mật khẩu
+        $('#submit-password').on('click', function() {
+            const enteredPassword = $('#password-input').val();
+            if (enteredPassword === correctPassword) {
+                $('#passwordModal').modal('hide');
+                $('#protected-div').addClass('d-none');
+                $('#unlocked-div').removeClass('d-none');
+            } else {
+                $('#error-message').removeClass('d-none');
+            }
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
