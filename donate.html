@@ -80,20 +80,38 @@
           thể xem đó là đầu tư vào... sự vui vẻ và sáng tạo của tui!
         </p>
         <p>Cảm ơn bạn rất nhiều! Bạn đúng là người hùng trong mắt tui đấy!</p>
-        <div class="row d-md-flex justify-content-between">
-          <div class="col-md-5">
-            <h3>SĐT: <span class="text-gradient" id="sdtmomo">0913847561</span> <button class="btn btn-outline-info"
-                id="copyMomo"><i class="fa-light fa-copy"></i></button></h3>
-            <img src="images/momo.jpg" alt="momo" loading="lazy" width="100%">
-
-            <!-- Bootstrap Modal -->
-
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+              type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Offline</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+              type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Streaming</button>
+          </li>
+        </ul>
+        <div class="tab-content mt-2" id="myTabContent">
+          <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+            tabindex="0">
+            <div class="row d-md-flex justify-content-between">
+              <div class="col-md-5">
+                <h3>SĐT: <span class="text-gradient" id="sdtmomo">0913847561</span> <button class="btn btn-outline-info"
+                    id="copyMomo"><i class="fa-light fa-copy"></i></button></h3>
+                <img src="images/momo.jpg" alt="momo" loading="lazy" width="100%">
+    
+                <!-- Bootstrap Modal -->
+    
+              </div>
+              <div class="col-md-5 py-md-0 py-3">
+                <h3>STK: <span class="text-gradient" id="stkvietcom">1027019780</span> <button class="btn btn-outline-info"
+                    id="copyVietcom"><i class="fa-light fa-copy"></i></button></h3>
+                </h3>
+                <img src="images/vietcombank.jpg" alt="vietcombank" loading="lazy" width="100%">
+              </div>
+            </div>
           </div>
-          <div class="col-md-5 py-md-0 py-3">
-            <h3>STK: <span class="text-gradient" id="stkvietcom">1027019780</span> <button class="btn btn-outline-info"
-                id="copyVietcom"><i class="fa-light fa-copy"></i></button></h3>
-            </h3>
-            <img src="images/vietcombank.jpg" alt="vietcombank" loading="lazy" width="100%">
+          <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+            <a href="https://wescan.vn/kietkuny" class="text-success">Wescan của Kiệt Kun nè</a>
           </div>
         </div>
       </div>
