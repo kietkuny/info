@@ -2217,6 +2217,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5,
 }
 
 .hero-wrap {
+  background: url('/images/bg_1.jpg');
   height: 100vh;
   min-height: 100%;
   position: relative;
@@ -3713,4 +3714,4 @@ textarea.form-control {
   background: black;
 }
 
-.donate{}
+.donate {}
