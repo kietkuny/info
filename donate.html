@@ -59,6 +59,22 @@
       transform: rotateY(180deg);
       z-index: 1;
     }
+
+    .card:hover img {
+      transform: scale(1.2);
+    }
+
+    .card .card-body {
+      transition: color .5s;
+    }
+
+    .card:hover .card-body {
+      color: #37b5b6;
+    }
+
+    .card img {
+      transition: transform .5s;
+    }
   </style>
 </head>
 
@@ -126,12 +142,13 @@
         <div class="tab-content mt-2" id="myTabContent">
           <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
             tabindex="0">
-            <div class="row justify-content-between">
+            <div class="row mt-3 justify-content-between">
               <div class="col-md-5" tabIndex="0">
-                <h3>SĐT: <span class="text-info" id="sdtmomo">0913847561</span> <button class="btn btn-outline-info"
-                    id="copyMomo"><i class="fa-light fa-copy"></i></button></h3>
-                <!-- <img src="images/zalo.jpg" alt="momo" loading="lazy" width="100%"> -->
-                <div class="flip-card">
+                <!-- <h3>SĐT: <span class="text-info" id="sdtmomo"></span> <button class="btn btn-outline-info"
+                    id="copyMomo"><i class="fa-light fa-copy"></i></button></h3> -->
+                <h3 class="text-center text-info">MOMO</h3>
+                <img src="images/momo.jpg" alt="momo" loading="lazy" width="100%">
+                <!-- <div class="flip-card">
                   <div class="flip-card-inner">
                     <div class="flip-card-front">
                       <img src="images/momo.jpg" alt="momo" loading="lazy" width="100%">
@@ -140,14 +157,14 @@
                       <img src="images/zalo.jpg" alt="zalo" loading="lazy" width="100%">
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <!-- Bootstrap Modal -->
 
               </div>
               <div class="col-md-5 py-md-0 py-3">
-                <h3>STK: <span class="text-info" id="stkvietcom">1027019780</span> <button class="btn btn-outline-info"
-                    id="copyVietcom"><i class="fa-light fa-copy"></i></button></h3>
-                </h3>
+                <!-- <h3>STK: <span class="text-info" id="stkvietcom">1027019780</span> <button class="btn btn-outline-info"
+                    id="copyVietcom"><i class="fa-light fa-copy"></i></button></h3> -->
+                <h3 class="text-center text-info">VIETCOMBANK</h3>
                 <img src="images/vietcombank.jpg" alt="vietcombank" loading="lazy" width="100%">
               </div>
             </div>
@@ -155,26 +172,34 @@
           <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
             <div class="row mt-3 justify-content-between">
               <div class="col-md-5 p-4 pt-0">
-                <div class="card">
-                  <img src="images/wescan.png" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Wescan</h5>
-                    <p class="card-text">Lên ủng hộ miếng trên livestream của Kiệt Kun nha!
-                    </p>
-                    <a href="https://qr.wescan.vn/kietkuny" class="btn btn-primary">Nhấn vô đây</a>
+                <a href="https://qr.wescan.vn/kietkuny">
+                  <div class="card">
+                    <div class="overflow-hidden">
+                      <img src="images/wescan.png" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Wescan</h5>
+                      <p class="card-text">
+                        Lên ủng hộ miếng trên livestream của Kiệt Kun nha!
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
               <div class="col-md-5 p-4 pt-0">
-                <div class="card">
-                  <img src="images/playerduo.png" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Playduo</h5>
-                    <p class="card-text">Có muốn thuê tui hay là ủng hộ tui trên live thôi không?
-                    </p>
-                    <a href="https://playerduo.net/kietkuny" class="btn btn-primary">Nhấn vô đây</a>
+                <a href="https://playerduo.net/kietkuny">
+                  <div class="card">
+                    <div class="overflow-hidden">
+                      <img src="images/playerduo.png" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Playduo</h5>
+                      <p class="card-text">
+                        Có muốn thuê tui hay là ủng hộ tui trên live thôi không?
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
@@ -251,7 +276,6 @@
             <div class="block-23 mb-3">
               <ul>
                 <li><span class="icon fa fa-map marker"></span><span class="text">Khánh Hòa</span></li>
-                <li class="mb-0"><a><span class="icon fa fa-phone"></span><span class="text">0913847561</span></a></li>
                 <li><a href="mailto:dotuankiet.nt@gmail.com"><span class="icon fa fa-paper-plane"></span><span
                       class="text"><span class="__cf_email__"
                         data-cfemail="761f181019360f19030412191b171f185815191b">dotuankiet.nt@gmail.com</span></span></a>
@@ -266,12 +290,12 @@
       <div class="container-xl">
         <div class="row">
           <div class="col-md-12 text-center">
-            <p class="mb-0" style="font-size: 14px;">Copytright &copy;
+            <p class="mb-0" style="font-size: 14px;">Copyright &copy;
               <script data-cfasync="false"
                 src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
               <script>document.write(new Date().getFullYear());</script> All rights reserved | This Website is made
               with <i class="fa fa-heart color-danger" aria-hidden="true"></i> by <a href="#" target="_blank"
-                rel="nofollow noopener">Đỗ Tuấn Kiệt</a>
+                rel="nofollow noopener" class="text-info">Đỗ Tuấn Kiệt</a>
             </p>
           </div>
         </div>
