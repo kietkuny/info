@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CNTT</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/loadonedrive.css">
+  <style>
+    .khung {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+    }
+
+    .khung img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .khung a {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px 40px;
+      font-size: 24px;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit {
+      display: block;
+      margin: 1rem 0;
+      font-size: 1.2rem;
+      outline: none;
+      border: none;
+      padding: 10px 50px;
+      background-image: linear-gradient(to right, #62cdff, #62cdff, #1a5f7a, #1a5f7a);
+      background-size: 300%;
+      border-radius: 100px;
+      color: black;
+      transition: 0.6s;
+    }
+
+    .btn-submit:hover {
+      background-position: right;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="demo-content">
+
+    <div id="loader-wrapper">
+      <div id="loader"></div>
+
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+
+    </div>
+
+    <div>
+      <div class="khung">
+        <img src="images/anhnenchoonedrive.webp" width="100%" alt="">
+        <a class="btn btn-submit"
+          href="https://ntueduvn-my.sharepoint.com/:f:/g/personal/kiet_dt_61cntt_ntu_edu_vn/EuHimcM5tLVMhkjQM-5RbQMBDPbmEuSl894_Qa0ieE_VSQ">Chưa chạy drive thì nhấn nút này</a>.
+      </div>
+    </div>
+
+  </div>
+  <!-- <div class="khung">
+    <img src="images/anhnenchoonedrive.webp" width="100%" alt="">
+    <a class="btn btn-info"
+      href="https://ntueduvn-my.sharepoint.com/:f:/g/personal/kiet_dt_61cntt_ntu_edu_vn/EuHimcM5tLVMhkjQM-5RbQMBDPbmEuSl894_Qa0ieE_VSQ">Nhấn
+      cái nút này</a>.
+  </div> -->
+  <!-- <script>
+      
+    </script> -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+  <script>
+    window.onload = function () {
+      window.location.href =
+        "https://ntueduvn-my.sharepoint.com/:f:/g/personal/kiet_dt_61cntt_ntu_edu_vn/EuHimcM5tLVMhkjQM-5RbQMBDPbmEuSl894_Qa0ieE_VSQ";
+    };
+    $(document).ready(function () {
+      setTimeout(function () {
+        $('body').addClass('loaded');
+      }, 5000);
+
+    });
+  </script>
+</body>
+
+</html>
