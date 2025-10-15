@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap Nav Tab — Vertical Sticky Responsive</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1724;
+      --accent-1: #6ee7b7;
+      --accent-2: #60a5fa;
+    }
+
+    body {
+      font-family: Inter, Poppins, system-ui, sans-serif;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(96, 165, 250, 0.08), transparent 10%),
+        radial-gradient(800px 400px at 90% 90%, rgba(110, 231, 183, 0.06), transparent 12%),
+        var(--bg);
+      color: #e6eef8;
+      margin: 0;
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar nav */
+    .sidebar {
+      width: 240px;
+      padding: 20px 10px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .fancy-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0;
+    }
+
+    .nav-link {
+      border-radius: 12px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      color: rgba(230, 238, 248, 0.85);
+      transition: all .2s;
+      width: 100%;
+      text-align: left;
+    }
+
+    .nav-link:hover {
+      color: white;
+      transform: translateX(4px)
+    }
+
+    .nav-pills .nav-link.active {
+      color: #04293a;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      box-shadow: 0 6px 20px rgba(96, 165, 250, 0.14);
+      border-radius: 0;
+      width: 100%;
+    }
+
+    /* Content area */
+    .content {
+      flex: 1;
+      padding: 40px;
+    }
+
+    .pane-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.4);
+    }
+
+    /* Responsive: On small screens, nav goes top horizontally in 1 line scrollable */
+    @media (max-width: 768px) {
+      .layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: sticky;
+        top: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 0;
+      }
+
+      .fancy-nav {
+        flex-direction: row;
+        gap: 6px;
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 6px;
+        scrollbar-width: none;
+        /* ẩn scrollbar trên Firefox */
+      }
+
+      .fancy-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* ẩn scrollbar trên Chrome/Safari */
+      .nav-link {
+        flex: 0 0 auto;
+        border-radius: 8px;
+        text-align: center;
+        display: inline-flex;
+      }
+
+      .nav-pills .nav-link.active {
+        border-radius: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+    <div class="sidebar">
+      <ul class="nav nav-pills fancy-nav" id="fancyTabs" role="tablist">
+        <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#home"
+            type="button"><i class="bi bi-house-door-fill"></i> Home</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#features" type="button"><i
+              class="bi bi-stars"></i> Features</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pricing" type="button"><i
+              class="bi bi-currency-dollar"></i> Pricing</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#contact" type="button"><i
+              class="bi bi-envelope-fill"></i> Contact</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#more" type="button"><i
+              class="bi bi-three-dots"></i> More</button></li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="home">
+          <div class="pane-card">
+            <h4>Welcome Home</h4>
+            <p>Đây là khu vực Home với nội dung demo.</p>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="features">
+          <div class="pane-card">
+            <h4>Features</h4>
+            <p>Các tính năng nổi bật.</p>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="pricing">
+          <div class="pane-card">
+            <h4>Pricing</h4>
+            <p>Chi tiết gói dịch vụ.</p>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="contact">
+          <div class="pane-card">
+            <h4>Contact</h4>
+            <p>Thông tin liên hệ.</p>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="more">
+          <div class="pane-card">
+            <h4>More</h4>
+            <p>Nội dung thêm để test scroll ngang trên mobile.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
