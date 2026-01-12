@@ -76,8 +76,8 @@ body {
 /* --- Banner --- */
 #home {
   height: 100vh;
-  background: url('img/bg_1hi.jpg') no-repeat center center/cover;
-  background-attachment: scroll;
+  background: url('img/bg_1hi.jpg') no-repeat center top/cover fixed;
+  background-attachment: fixed;
   position: relative;
   overflow: hidden;
 }
@@ -416,7 +416,7 @@ body {
   }
 
   #home {
-    background: url('img/bg_1hi.jpg') no-repeat center center/cover;
+    background: url('img/bg_1hi.jpg') no-repeat center center/cover ;
     background-attachment: scroll;
   }
 }
