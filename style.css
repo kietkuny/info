@@ -13,7 +13,8 @@ body {
   overflow-x: hidden;
   color: #333;
   background-color: #f9fbf9;
-  
+  width: 100%;
+  max-width: 100%;
 }
 
 /* --- Typography --- */
@@ -75,7 +76,8 @@ body {
 /* --- Banner --- */
 #home {
   height: 100vh;
-  background: url('img/bg_1hi.jpg') no-repeat center top/cover fixed;
+  background: url('img/bg_1hi.jpg') no-repeat center center/cover;
+  background-attachment: scroll;
   position: relative;
   overflow: hidden;
 }
@@ -414,6 +416,29 @@ body {
   }
 
   #home {
-    background: url('img/bg_1hi.jpg') no-repeat center right/cover fixed;
+    background: url('img/bg_1hi.jpg') no-repeat center center/cover;
+    background-attachment: scroll;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #home {
+    height: 100vh;
+    min-height: 500px;
+    background: url('img/bg_1hi.jpg') no-repeat center center/cover;
+    background-attachment: scroll;
+    background-size: cover;
+  }
+
+  #home .container {
+    padding: 20px 15px;
+  }
+
+  #home h1 {
+    font-size: 1.8rem !important;
+  }
+
+  #home h2 {
+    font-size: 1.2rem !important;
   }
 }
