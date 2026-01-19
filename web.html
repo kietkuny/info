@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lập trình web CLB</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="img/LogoWeb.svg">
+  <style>
+    :root {
+      --primary-green: #4E6E5D;
+      --light-green: #A3C9A8;
+      --dark-green: #2C3E33;
+      --bg-loang: linear-gradient(135deg, #2c3e33 0%, #4e6e5d 50%, #84a98c 100%);
+    }
+
+    body {
+      background-color: #f9fbf9;
+      color: #333;
+    }
+
+    /* --- Navbar --- */
+    .navbar {
+      transition: all 0.5s ease;
+      padding: 20px 0;
+      background-color: var(--dark-green);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar.scrolled {
+      padding: 10px 0;
+    }
+
+    .navbar-brand {
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: white !important;
+    }
+
+    .navbar .nav-link {
+      color: white;
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link.active {
+      color: var(--light-green) !important;
+    }
+
+    /* --- Banner --- */
+    #home {
+      height: 50vh;
+      background: var(--bg-loang);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      margin-top: 70px;
+    }
+
+    .banner-content h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .banner-content p {
+      font-size: 1.3rem;
+      opacity: 0.95;
+    }
+
+    .banner-content .line {
+      width: 60px;
+      height: 3px;
+      background-color: var(--light-green);
+      margin: 15px auto;
+    }
+
+    /* --- Section Styling --- */
+    .section-padding {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      color: var(--dark-green);
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .section-title .line {
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary-green);
+      margin: 0 auto;
+    }
+
+    /* --- Accordion / Expandable Content --- */
+    .pdf-category {
+      margin-bottom: 20px;
+    }
+
+    .category-header {
+      background: var(--primary-green);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .category-header:hover {
+      background: var(--dark-green);
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .category-header h3 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .category-header .toggle-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .category-header.active .toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .category-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #f0f5f1;
+      border-radius: 0 0 8px 8px;
+    }
+
+    .category-content.active {
+      max-height: 1000px;
+    }
+
+    .pdf-list {
+      padding: 30px;
+      list-style: none;
+      margin: 0;
+    }
+
+    .pdf-item {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .pdf-item::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background-color: var(--primary-green);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* --- PDF Link Styling --- */
+    .pdf-link {
+      color: var(--dark-green);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pdf-link::after {
+      content: '\f08e';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      font-size: 0.85rem;
+      opacity: 0;
+      transition: all 0.3s ease;
+      transform: translateX(-5px);
+    }
+
+    .pdf-link:hover {
+      color: var(--light-green);
+      padding-left: 5px;
+    }
+
+    .pdf-link:hover::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: var(--dark-green);
+      color: white;
+      text-align: center;
+      padding: 30px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: var(--light-green);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      #home {
+        height: auto;
+        padding: 60px 20px;
+      }
+
+      .banner-content h1 {
+        font-size: 2rem;
+      }
+
+      .banner-content p {
+        font-size: 1rem;
+      }
+
+      .section-title h2 {
+        font-size: 1.8rem;
+      }
+
+      .category-header h3 {
+        font-size: 1.2rem;
+      }
+
+      .category-content {
+        max-height: none !important;
+      }
+
+      .pdf-list {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark transition-all" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><img src="img/LogoWeb.svg" alt="logo" width="40"
+          class="me-2">Kietkuny</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item px-lg-2 px-0"><a class="nav-link" href="index.html">Trang chủ</a></li>
+          <li class="nav-item px-lg-2 px-0"><a class="nav-link" href="#pdf-categories">Thư Viện PDF</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner
+  <section id="home">
+    <div class="banner-content text-center">
+      <h1>Thư Viện PDF</h1>
+      <div class="line"></div>
+      <p>Các tài liệu và tài nguyên hữu ích cho bạn</p>
+    </div>
+  </section> -->
+
+  <!-- Main Content -->
+  <section id="pdf-categories" class="section-padding mt-5">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Tài Liệu Lập trình Web</h2>
+        <div class="line"></div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-lg-10 mx-auto">
+
+          <!-- Category 1: Tiếng Anh -->
+          <div class="pdf-category" data-aos="fade-up">
+            <div class="category-header" onclick="toggleCategory(this)">
+              <h3><i class="fas fa-book me-2"></i>Bài Soạn Web</h3>
+              <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="category-content">
+              <ul class="pdf-list">
+                <li class="pdf-item">
+                  <a href="pdf/HTML cơ bản.pdf" target="_blank" class="pdf-link">HTML cơ bản</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/HTML +CSS cơ bản.pdf" target="_blank" class="pdf-link">HTML CSS cơ bản</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/vocabulary-list.pdf" target="_blank" class="pdf-link">Display flex</a>
+                </li>
+                <!-- <li class="pdf-item">
+                  <a href="pdf/listening-practice.pdf" target="_blank" class="pdf-link">Bài Tập Nghe</a>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+
+          <!-- Category 2: Kiến Thức Chung -->
+          <div class="pdf-category" data-aos="fade-up" data-aos-delay="100">
+            <div class="category-header" onclick="toggleCategory(this)">
+              <h3><i class="fas fa-lightbulb me-2"></i>Đề thi web</h3>
+              <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="category-content">
+              Đang cập nhật sau
+              <!-- <ul class="pdf-list">
+                <li class="pdf-item">
+                  <a href="pdf/introduction.pdf" target="_blank" class="pdf-link">Giới Thiệu Chung</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/tips-tricks.pdf" target="_blank" class="pdf-link">Mẹo & Thủ Thuật</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/best-practices.pdf" target="_blank" class="pdf-link">Thực Hành Tốt Nhất</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/faq.pdf" target="_blank" class="pdf-link">Câu Hỏi Thường Gặp</a>
+                </li>
+              </ul> -->
+            </div>
+          </div>
+
+          
+          <!-- <div class="pdf-category" data-aos="fade-up" data-aos-delay="200">
+            <div class="category-header" onclick="toggleCategory(this)">
+              <h3><i class="fas fa-video me-2"></i>Tài Liệu Trực Quan</h3>
+              <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="category-content">
+              <ul class="pdf-list">
+                <li class="pdf-item">
+                  <a href="pdf/photography-guide.pdf" target="_blank" class="pdf-link">Hướng Dẫn Chụp Ảnh</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/video-editing.pdf" target="_blank" class="pdf-link">Hướng Dẫn Chỉnh Sửa Video</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/design-principles.pdf" target="_blank" class="pdf-link">Nguyên Lý Thiết Kế</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/color-theory.pdf" target="_blank" class="pdf-link">Lý Thuyết Màu Sắc</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          
+          <div class="pdf-category" data-aos="fade-up" data-aos-delay="300">
+            <div class="category-header" onclick="toggleCategory(this)">
+              <h3><i class="fas fa-graduation-cap me-2"></i>Kỹ Năng & Phát Triển</h3>
+              <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="category-content">
+              <ul class="pdf-list">
+                <li class="pdf-item">
+                  <a href="pdf/communication-skills.pdf" target="_blank" class="pdf-link">Kỹ Năng Giao Tiếp</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/leadership-guide.pdf" target="_blank" class="pdf-link">Hướng Dẫn Lãnh Đạo</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/time-management.pdf" target="_blank" class="pdf-link">Quản Lý Thời Gian</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/personal-growth.pdf" target="_blank" class="pdf-link">Phát Triển Cá Nhân</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          
+          <div class="pdf-category" data-aos="fade-up" data-aos-delay="400">
+            <div class="category-header" onclick="toggleCategory(this)">
+              <h3><i class="fas fa-code me-2"></i>Công Nghệ & Lập Trình</h3>
+              <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+            <div class="category-content">
+              <ul class="pdf-list">
+                <li class="pdf-item">
+                  <a href="pdf/web-development.pdf" target="_blank" class="pdf-link">Phát Triển Web</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/javascript-basics.pdf" target="_blank" class="pdf-link">JavaScript Cơ Bản</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/css-guide.pdf" target="_blank" class="pdf-link">Hướng Dẫn CSS</a>
+                </li>
+                <li class="pdf-item">
+                  <a href="pdf/database-tutorial.pdf" target="_blank" class="pdf-link">Hướng Dẫn Cơ Sở Dữ Liệu</a>
+                </li>
+              </ul>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Kiệt Kun. Tất cả quyền được bảo lưu.</p>
+      <p>
+        <a href="https://www.facebook.com/kietkuny/" target="_blank"><i class="fab fa-facebook-f me-2"></i>Facebook</a>
+        |
+        <a href="https://www.instagram.com/kietkuny/" target="_blank"><i class="fab fa-instagram me-2"></i>Instagram</a>
+        |
+        <a href="https://www.youtube.com/@kietkuny" target="_blank"><i class="fab fa-youtube me-2"></i>YouTube</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      offset: 100
+    });
+
+
+    // Toggle Category Function
+    function toggleCategory(header) {
+      const content = header.nextElementSibling;
+      const isActive = header.classList.contains('active');
+
+      // Close all other categories
+      document.querySelectorAll('.category-header').forEach(h => {
+        if (h !== header) {
+          h.classList.remove('active');
+          h.nextElementSibling.classList.remove('active');
+        }
+      });
+
+      // Toggle current category
+      if (isActive) {
+        header.classList.remove('active');
+        content.classList.remove('active');
+      } else {
+        header.classList.add('active');
+        content.classList.add('active');
+      }
+    }
+
+    // Open first category on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      const firstHeader = document.querySelector('.category-header');
+      if (firstHeader) {
+        toggleCategory(firstHeader);
+      }
+    });
+  </script>
+
+</body>
+
+</html>
