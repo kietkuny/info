@@ -13,7 +13,7 @@
     <div class="box"></div>
   </div>
   <div class="position-khung">
-    <img width="50%" src="https://cdn2.fptshop.com.vn/unsafe/800x0/cac_tap_phim_phim_dai_doraemon_2_48437313ec.jpg" alt="">
+    <img width="100%" src="https://cdn2.fptshop.com.vn/unsafe/800x0/cac_tap_phim_phim_dai_doraemon_2_48437313ec.jpg" alt="">
     <h1 class="positon-ten">Đỗ Tuấn Kiệt</h1>
   </div>
   <div class="la-co">
