@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+  <div class="position-khung">
+    <img width="50%" src="https://cdn2.fptshop.com.vn/unsafe/800x0/cac_tap_phim_phim_dai_doraemon_2_48437313ec.jpg" alt="">
+    <h1 class="positon-ten">Đỗ Tuấn Kiệt</h1>
+  </div>
+  <div class="la-co">
+    <div class="nen-do"></div>
+    <div class="ngoi-sao"></div>
+  </div>
+</body>
+</html>

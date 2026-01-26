@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Hello, World!</h1>
+  <h2>Welcome to my website</h2>
+  <h3>Enjoy your stay!</h3>
+  <h4>Have a great day!</h4>
+  <h5>Thank you for visiting!</h5>
+  <h6>Goodbye!</h6>
+
+  <ul>
+    <li>Menu 1</li>
+    <li>Menu 2</li>
+    <li>Menu 3</li>
+  </ul>
+  <ol>
+    <li>Danh sách 1</li>
+    <li>Danh sách 2</li>
+    <li>Danh sách 3</li>
+  </ol>
+  <ol type="I">
+    <li>Danh sách 1
+      <ol>
+        <li>Menu 1</li>
+        <li>Menu 2</li>
+        <li>Menu 3</li>
+        <li>Menu 4</li>
+        <li>Menu 5</li>
+      </ol>
+    </li>
+    <li>Danh sách 2
+      <ol start="6">
+        <li>Menu 6</li>
+        <li>Menu 7</li>
+        <li>Menu 8</li>
+        <li>Menu 9</li>
+        <li>Menu 10</li>
+      </ol>
+    </li>
+  </ol>
+
+  <a href="https://kietkuny.github.io/info/">Nhấn nút này</a>
+  
+  <table border="1">
+    <tr>
+      <td rowspan="3">1</td>
+      <td rowspan="2">2</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td colspan="2">7</td>
+    </tr>
+    <tr>
+      <td colspan="3">10</td>
+    </tr>
+  </table>
+<br>
+<br>
+<br>
+  <form action="">
+    <label>Tên đăng nhập</label>
+    <input type="text" name="user">
+    <br>
+    <label >Mật khẩu</label>
+    <input type="password" name="pw">
+    <br>
+    <label for="">Giới tính</label>
+    <br>
+    <input type="radio" name="gender">Nam
+    <input type="radio" name="gender">Nữ
+    <br>
+    <input type="checkbox" name="subscribe" id="subscribe">
+    <input type="checkbox" name="subscribe" id="subscribe">
+    <input type="checkbox" name="subscribe" id="subscribe">
+    <button type="submit">Đăng nhập</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,81 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.box{
+  height: 100px;
+  background-color: coral;
+  width: 30%;
+  border: 1px solid black;
+}
+.box1{
+  height: 30px;
+  background-color: lightblue;
+  margin: 5px 0;
+}
+.container{
+  display: flex;
+  justify-content: space-around;
+  height: 500px;
+  border: 1px solid black;
+  align-items: center;
+}
+.khung{
+  display: flex;
+  justify-content: space-between;
+  height: 300px;
+  border: 1px solid black;
+}
+.hop1{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: end;
+  width: 60%;
+  background-color: lightgreen;
+}
+.hop2{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 35%;
+  background-color: lightblue;
+} 
+.hop1, .hop2{
+  height: 100%;
+}
+.hop2lon{
+  border: 3px solid red;
+  display: flex;
+  justify-content: space-between;
+}
+.hopcon{
+  height: 80px;
+  width: 80px;
+  background-color: coral;
+}
+nav{
+  display: flex;
+  justify-content: space-between;
+  background-color: lightgreen;
+  padding: 10px;
+}
+ul{
+  list-style-type: none;
+  display: flex;
+}
+li{
+  margin: 0 10px;
+}
+a{
+  text-decoration: none;
+  color: black;
+  transition: all 0.3s ;
+}
+
+a:hover{
+  color:white;
+  text-decoration: underline;
+}
+

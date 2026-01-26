@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .kiet{
+      color: royalblue;
+      background-color: lightgreen;
+      text-align: end;
+    }
+    /* #kiet{
+      color: orange;
+      background-color: lightgray;
+      text-align: left;
+    } */
+  </style>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./css/style2.css">
+</head>
+<body>
+  <header>
+    <div style="color: red; background-color: cyan; text-align: center;">Đỗ Tuấn Kiệt</div>
+    <div class="kiet" id="kiet">Đỗ Tuấn Kiệt</div>
+    <div class="tuan">Đỗ Tuấn Kiệt</div>
+    <a href="">Link youtuber</a>
+    <ul class="danhsach1">
+      <li><a href="">Menu</a></li>
+      <li><a href="">Menu</a></li>
+      <li><a href="">Menu</a></li>
+      <li><a href="">Menu</a></li>
+    </ul>
+    <ul class="danhsach2">
+      <li><a href="">Menu</a></li>
+      <li><a href="">Menu</a></li>
+      <li><a href="">Menu</a></li>
+      <li><a href="">Menu</a></li>
+    </ul>
+  </header>
+  <main>
+    <section class="banner"></section>
+    <section class="info"></section>
+    <section class="blog"></section>
+    <div class="kichthuoc">
+      Đỗ Tuấn Kiệt
+    </div>
+  </main>
+  <footer></footer>
+</body>
+</html>
