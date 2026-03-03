@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 3</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      font-family: 'Segoe UI', sans-serif;
+      background: #1e1e1e;
+      color: white;
+      overflow: hidden;
+    }
+
+    /* ===== LEFT PANEL ===== */
+    .left {
+      flex-basis: 50%;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #333;
+      min-width: 200px;
+    }
+
+    /* ===== RESIZER ===== */
+    .resizer {
+      width: 6px;
+      background: #444;
+      cursor: col-resize;
+    }
+
+    .resizer:hover {
+      background: #4fc3f7;
+    }
+
+    /* ===== RIGHT SIDE ===== */
+    .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: white;
+    }
+
+    /* ===== RESULT HEADER ===== */
+    .result-header {
+      background: #f1f1f1;
+      color: #000;
+      padding: 6px 12px;
+      font-size: 13px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    iframe {
+      flex: 1;
+      border: none;
+    }
+
+    /* ===== TAB ===== */
+    .tabs {
+      display: flex;
+      background: #252526;
+    }
+
+    .tabs button {
+      flex: 1;
+      padding: 12px;
+      background: #2d2d2d;
+      border: none;
+      color: #aaa;
+      cursor: pointer;
+    }
+
+    .tabs button.active {
+      background: #1e1e1e;
+      color: #4fc3f7;
+      border-bottom: 2px solid #4fc3f7;
+    }
+
+    .CodeMirror {
+      height: 100%;
+      font-size: 14px;
+    }
+
+    /* ===== OVERLAY (quan trọng để kéo mượt) ===== */
+    .drag-overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 9999;
+      cursor: col-resize;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="left" id="leftPanel">
+
+    <div class="tabs">
+      <button onclick="showTab('html')" id="htmlTab">HTML</button>
+      <button onclick="showTab('css')" id="cssTab">CSS</button>
+    </div>
+
+    <textarea id="htmlCode">
+<div class="container">
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+</div>
+<div class="khung">
+  <div class="hop1">
+    <div class="hopcon"></div>
+    <div class="hopcon"></div>
+  </div>
+  <div class="hop2">
+    <div class="hop2lon">
+      <div class="hopcon"></div>
+      <div class="hopcon"></div>
+    </div>
+    <div class="hop2lon">
+      <div class="hopcon"></div>
+      <div class="hopcon"></div>
+    </div>
+  </div>
+</div>
+<header>
+  <nav>
+    <h3>Logo</h3>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main></main>
+<footer></footer>
+</textarea>
+
+    <textarea id="cssCode" style="display:none;">
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.box{
+  height: 100px;
+  background-color: coral;
+  width: 30%;
+  border: 1px solid black;
+}
+.box1{
+  height: 30px;
+  background-color: lightblue;
+  margin: 5px 0;
+}
+.container{
+  display: flex;
+  justify-content: space-around;
+  height: 500px;
+  border: 1px solid black;
+  align-items: center;
+}
+.khung{
+  display: flex;
+  justify-content: space-between;
+  height: 300px;
+  border: 1px solid black;
+}
+.hop1{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: end;
+  width: 60%;
+  background-color: lightgreen;
+}
+.hop2{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 35%;
+  background-color: lightblue;
+} 
+.hop1, .hop2{
+  height: 100%;
+}
+.hop2lon{
+  border: 3px solid red;
+  display: flex;
+  justify-content: space-between;
+}
+.hopcon{
+  height: 80px;
+  width: 80px;
+  background-color: coral;
+}
+nav{
+  display: flex;
+  justify-content: space-between;
+  background-color: lightgreen;
+  padding: 10px;
+}
+ul{
+  list-style-type: none;
+  display: flex;
+}
+li{
+  margin: 0 10px;
+}
+a{
+  text-decoration: none;
+  color: black;
+  transition: all 0.3s ;
+}
+
+a:hover{
+  color:white;
+  text-decoration: underline;
+}
+    </textarea>
+
+  </div>
+
+  <div class="resizer" id="resizer"></div>
+
+  <div class="right">
+    <div class="result-header">
+      Result Size: <span id="sizeInfo"></span>
+    </div>
+    <iframe id="preview"></iframe>
+  </div>
+
+  <div class="drag-overlay" id="overlay"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+
+  <script>
+    let htmlEditor = CodeMirror.fromTextArea(
+      document.getElementById("htmlCode"),
+      { mode: "xml", lineNumbers: true, lineWrapping: true }
+    );
+
+    let cssEditor = CodeMirror.fromTextArea(
+      document.getElementById("cssCode"),
+      { mode: "css", lineNumbers: true, lineWrapping: true }
+    );
+
+    function updatePreview() {
+      const html = htmlEditor.getValue();
+      const css = cssEditor.getValue();
+
+      const iframe = document.getElementById("preview");
+      iframe.srcdoc = `
+<style>${css}</style>
+${html}
+`;
+
+      updateSize();
+    }
+
+    htmlEditor.on("change", updatePreview);
+    cssEditor.on("change", updatePreview);
+
+    function showTab(tab) {
+      document.getElementById("htmlTab").classList.remove("active");
+      document.getElementById("cssTab").classList.remove("active");
+
+      if (tab === "html") {
+        htmlEditor.getWrapperElement().style.display = "block";
+        cssEditor.getWrapperElement().style.display = "none";
+        document.getElementById("htmlTab").classList.add("active");
+      } else {
+        htmlEditor.getWrapperElement().style.display = "none";
+        cssEditor.getWrapperElement().style.display = "block";
+        document.getElementById("cssTab").classList.add("active");
+      }
+    }
+
+    showTab("html");
+    updatePreview();
+
+    /* ===== RESIZE LIKE W3SCHOOLS ===== */
+
+    const resizer = document.getElementById("resizer");
+    const leftPanel = document.getElementById("leftPanel");
+    const overlay = document.getElementById("overlay");
+
+    let isResizing = false;
+
+    resizer.addEventListener("mousedown", function () {
+      isResizing = true;
+      overlay.style.display = "block";   // bật lớp phủ
+    });
+
+    overlay.addEventListener("mousemove", function (e) {
+      if (!isResizing) return;
+
+      const min = 200;
+      const max = window.innerWidth - 200;
+
+      if (e.clientX > min && e.clientX < max) {
+        leftPanel.style.flexBasis = e.clientX + "px";
+        updateSize();
+      }
+    });
+
+    overlay.addEventListener("mouseup", function () {
+      isResizing = false;
+      overlay.style.display = "none";
+    });
+
+    /* ===== UPDATE RESULT SIZE ===== */
+    function updateSize() {
+      const iframe = document.getElementById("preview");
+      const sizeInfo = document.getElementById("sizeInfo");
+
+      const w = iframe.clientWidth;
+      const h = iframe.clientHeight;
+
+      sizeInfo.textContent = w + " x " + h;
+    }
+
+    window.addEventListener("resize", updateSize);
+  </script>
+
+</body>
+
+</html>

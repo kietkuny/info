@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 1</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      font-family: 'Segoe UI', sans-serif;
+      background: #1e1e1e;
+      color: white;
+      overflow: hidden;
+    }
+
+    /* ===== LEFT PANEL ===== */
+    .left {
+      flex-basis: 50%;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #333;
+      min-width: 200px;
+    }
+
+    /* ===== RESIZER ===== */
+    .resizer {
+      width: 6px;
+      background: #444;
+      cursor: col-resize;
+    }
+
+    .resizer:hover {
+      background: #4fc3f7;
+    }
+
+    /* ===== RIGHT SIDE ===== */
+    .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: white;
+    }
+
+    /* ===== RESULT HEADER ===== */
+    .result-header {
+      background: #f1f1f1;
+      color: #000;
+      padding: 6px 12px;
+      font-size: 13px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    iframe {
+      flex: 1;
+      border: none;
+    }
+
+    /* ===== TAB ===== */
+    .tabs {
+      display: flex;
+      background: #252526;
+    }
+
+    .tabs button {
+      flex: 1;
+      padding: 12px;
+      background: #2d2d2d;
+      border: none;
+      color: #aaa;
+      cursor: pointer;
+    }
+
+    .tabs button.active {
+      background: #1e1e1e;
+      color: #4fc3f7;
+      border-bottom: 2px solid #4fc3f7;
+    }
+
+    .CodeMirror {
+      height: 100%;
+      font-size: 14px;
+    }
+
+    /* ===== OVERLAY (quan trọng để kéo mượt) ===== */
+    .drag-overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 9999;
+      cursor: col-resize;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="left" id="leftPanel">
+
+    <div class="tabs">
+      <button onclick="showTab('html')" id="htmlTab">HTML</button>
+      <button onclick="showTab('css')" id="cssTab">CSS</button>
+    </div>
+
+    <textarea id="htmlCode">
+<h1>Hello, World!</h1>
+<h2>Welcome to my website</h2>
+<h3>Enjoy your stay!</h3>
+<h4>Have a great day!</h4>
+<h5>Thank you for visiting!</h5>
+<h6>Goodbye!</h6>
+
+<ul>
+  <li>Menu 1</li>
+  <li>Menu 2</li>
+  <li>Menu 3</li>
+</ul>
+<ol>
+  <li>Danh sách 1</li>
+  <li>Danh sách 2</li>
+  <li>Danh sách 3</li>
+</ol>
+<ol type="I">
+  <li>Danh sách 1
+    <ol>
+      <li>Menu 1</li>
+      <li>Menu 2</li>
+      <li>Menu 3</li>
+      <li>Menu 4</li>
+      <li>Menu 5</li>
+    </ol>
+  </li>
+  <li>Danh sách 2
+    <ol start="6">
+      <li>Menu 6</li>
+      <li>Menu 7</li>
+      <li>Menu 8</li>
+      <li>Menu 9</li>
+      <li>Menu 10</li>
+    </ol>
+  </li>
+</ol>
+
+<a href="https://kietkuny.github.io/info/">Nhấn nút này</a>
+
+<table border="1">
+  <tr>
+    <td rowspan="3">1</td>
+    <td rowspan="2">2</td>
+    <td>3</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td colspan="2">7</td>
+  </tr>
+  <tr>
+    <td colspan="3">10</td>
+  </tr>
+</table>
+<br>
+<br>
+<br>
+<form action="">
+  <label>Tên đăng nhập</label>
+  <input type="text" name="user">
+  <br>
+  <label>Mật khẩu</label>
+  <input type="password" name="pw">
+  <br>
+  <label for="">Giới tính</label>
+  <br>
+  <input type="radio" name="gender">Nam
+  <input type="radio" name="gender">Nữ
+  <br>
+  <input type="checkbox" name="subscribe" id="subscribe">
+  <input type="checkbox" name="subscribe" id="subscribe">
+  <input type="checkbox" name="subscribe" id="subscribe">
+  <button type="submit">Đăng nhập</button>
+</form>
+</textarea>
+
+    <textarea id="cssCode" style="display:none;">
+
+    </textarea>
+
+  </div>
+
+  <div class="resizer" id="resizer"></div>
+
+  <div class="right">
+    <div class="result-header">
+      Result Size: <span id="sizeInfo"></span>
+    </div>
+    <iframe id="preview"></iframe>
+  </div>
+
+  <div class="drag-overlay" id="overlay"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+
+  <script>
+    let htmlEditor = CodeMirror.fromTextArea(
+      document.getElementById("htmlCode"),
+      { mode: "xml", lineNumbers: true, lineWrapping: true }
+    );
+
+    let cssEditor = CodeMirror.fromTextArea(
+      document.getElementById("cssCode"),
+      { mode: "css", lineNumbers: true, lineWrapping: true }
+    );
+
+    function updatePreview() {
+      const html = htmlEditor.getValue();
+      const css = cssEditor.getValue();
+
+      const iframe = document.getElementById("preview");
+      iframe.srcdoc = `
+<style>${css}</style>
+${html}
+`;
+
+      updateSize();
+    }
+
+    htmlEditor.on("change", updatePreview);
+    cssEditor.on("change", updatePreview);
+
+    function showTab(tab) {
+      document.getElementById("htmlTab").classList.remove("active");
+      document.getElementById("cssTab").classList.remove("active");
+
+      if (tab === "html") {
+        htmlEditor.getWrapperElement().style.display = "block";
+        cssEditor.getWrapperElement().style.display = "none";
+        document.getElementById("htmlTab").classList.add("active");
+      } else {
+        htmlEditor.getWrapperElement().style.display = "none";
+        cssEditor.getWrapperElement().style.display = "block";
+        document.getElementById("cssTab").classList.add("active");
+      }
+    }
+
+    showTab("html");
+    updatePreview();
+
+    /* ===== RESIZE LIKE W3SCHOOLS ===== */
+
+    const resizer = document.getElementById("resizer");
+    const leftPanel = document.getElementById("leftPanel");
+    const overlay = document.getElementById("overlay");
+
+    let isResizing = false;
+
+    resizer.addEventListener("mousedown", function () {
+      isResizing = true;
+      overlay.style.display = "block";   // bật lớp phủ
+    });
+
+    overlay.addEventListener("mousemove", function (e) {
+      if (!isResizing) return;
+
+      const min = 200;
+      const max = window.innerWidth - 200;
+
+      if (e.clientX > min && e.clientX < max) {
+        leftPanel.style.flexBasis = e.clientX + "px";
+        updateSize();
+      }
+    });
+
+    overlay.addEventListener("mouseup", function () {
+      isResizing = false;
+      overlay.style.display = "none";
+    });
+
+    /* ===== UPDATE RESULT SIZE ===== */
+    function updateSize() {
+      const iframe = document.getElementById("preview");
+      const sizeInfo = document.getElementById("sizeInfo");
+
+      const w = iframe.clientWidth;
+      const h = iframe.clientHeight;
+
+      sizeInfo.textContent = w + " x " + h;
+    }
+
+    window.addEventListener("resize", updateSize);
+  </script>
+
+</body>
+
+</html>
