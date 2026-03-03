@@ -1,0 +1,48 @@
+.desktop-first {
+  height: 200px;
+  background-color: red;
+}
+
+@media screen and (max-width: 1023.98px) {
+  .desktop-first {
+    background-color: blue;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .desktop-first {
+    background-color: green;
+  }
+}
+
+.mobile-first {
+  height: 200px;
+  background-color: plum;
+}
+
+@media screen and (min-width: 768px) {
+  .mobile-first {
+    background-color: yellow;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .mobile-first {
+    background-color: orange;
+  }
+}
+
+ul {
+  display: block;
+  list-style: disc;
+  padding: 30px;
+}
+
+@media screen and (min-width: 1024px) {
+  ul {
+    display: flex;
+    list-style: none;
+    padding: 20px;
+    justify-content: space-between;
+  }
+}
