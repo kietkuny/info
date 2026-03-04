@@ -244,10 +244,12 @@ ${html}
         htmlEditor.getWrapperElement().style.display = "block";
         cssEditor.getWrapperElement().style.display = "none";
         document.getElementById("htmlTab").classList.add("active");
+        htmlEditor.refresh();
       } else {
         htmlEditor.getWrapperElement().style.display = "none";
         cssEditor.getWrapperElement().style.display = "block";
         document.getElementById("cssTab").classList.add("active");
+        cssEditor.refresh();
       }
     }
 
