@@ -31,6 +31,7 @@ body {
   color: var(--dark-green);
   text-transform: uppercase;
   font-weight: 700;
+  text-shadow: 2px 2px 0px var(--light-green);
 }
 
 .section-title .line {
@@ -122,6 +123,12 @@ body {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.text-3d-vintage {
+  color: #ffffff;
+  text-shadow: 2px 2px 0px #37b5b6, 5px 5px 0px #2c3e33;
+  animation: floatText 4s ease-in-out infinite;
+}
+
 .cursor {
   animation: blink 1s infinite;
 }
@@ -154,14 +161,14 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.social-icons a {
+.social-icons a i{
   color: white;
   font-size: 1.5rem;
   margin-right: 20px;
   transition: 0.3s;
 }
 
-.social-icons a:hover {
+.social-icons a:hover i {
   color: var(--light-green);
   transform: scale(1.2);
 }
@@ -222,6 +229,34 @@ body {
 /* --- Projects (Slick Slider) --- */
 .bg-light-green {
   background-color: #e9f5eb;
+}
+
+.card-3d {
+  border: 2px solid #2c3e33;
+  border-radius: 12px;
+  box-shadow: 8px 8px 0px #2c3e33;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background: #ffffff;
+  transform-style: preserve-3d;
+}
+
+.card-3d:hover {
+  /* Hiệu ứng nghiêng 3D khi hover */
+  transform: perspective(1000px) rotateX(4deg) rotateY(-4deg) translateY(-10px) scale(1.02);
+  box-shadow: 15px 15px 0px rgba(44, 62, 51, 0.8);
+}
+
+/* --- KEYFRAMES (Hiệu ứng vòng lặp) --- */
+
+@keyframes floatText {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .project-card {
