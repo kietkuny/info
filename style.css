@@ -114,7 +114,7 @@ body {
   width: 100%;
   height: 100%;
   background: var(--bg-loang);
-  opacity: 0.85;
+  opacity: 0.65;
   mix-blend-mode: multiply;
 }
 
@@ -405,6 +405,53 @@ body {
 .highlight-card {
   background: #f0fff4;
   border: 2px dashed var(--primary-green);
+}
+
+.contact-links .contact-option {
+  background: white;
+  border-radius: 18px;
+  border: 1px solid #eee;
+  padding: 20px 16px;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  color: inherit;
+}
+
+.contact-links .contact-option:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-green);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.contact-links .contact-option .icon-circle {
+  width: 48px;
+  height: 48px;
+  background: var(--light-green);
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+  color: var(--dark-green);
+}
+
+.contact-links .contact-option h5 {
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+  color: var(--dark-green);
+}
+
+.contact-links .contact-option p {
+  margin-bottom: 0;
+  color: #6c757d;
+}
+
+@media (max-width: 576px) {
+  .contact-links .contact-option {
+    min-height: 150px;
+    padding: 18px 14px;
+  }
 }
 
 /* --- Donate --- */
