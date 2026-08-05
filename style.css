@@ -156,6 +156,13 @@ body {
   transition: 0.3s;
 }
 
+@media (max-width: 768px) {
+  .custom-btn {
+    font-size: 0.9rem;
+    padding: 8px 20px;
+  }
+}
+
 .custom-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
