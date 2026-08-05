@@ -489,13 +489,31 @@ body {
   }
 }
 
+@media screen and (max-width: 768px) {
+  #home {
+    height: 100vh;
+    min-height: 500px;
+    background: url('img/bg_mobile.png') no-repeat center center/cover;
+    background-attachment: scroll;
+    background-size: cover;
+  }
+
+  #home p {
+    font-size: medium;
+  }
+}
+
 @media screen and (max-width: 576px) {
   #home {
     height: 100vh;
     min-height: 500px;
-    background: url('img/bg_1hi.jpg') no-repeat center center/cover;
+    background: url('img/bg_mobile.png') no-repeat center center/cover;
     background-attachment: scroll;
     background-size: cover;
+  }
+
+  #home p {
+    font-size: small;
   }
 
   #home .container {
