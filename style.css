@@ -375,11 +375,20 @@ body {
 }
 
 .modal-slider .slider-for {
-  min-height: 260px;
+  min-height: 300px;
 }
 
+/* Ẩn slider-nav cho đến khi Slick khởi tạo */
 .modal-slider .slider-nav {
-  min-height: 140px;
+  min-height: 80px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+
+.modal-slider .slider-nav.slick-initialized {
+  visibility: visible;
+  opacity: 1;
 }
 
 .modal-slider .slider-for .slick-slide,
@@ -391,12 +400,12 @@ body {
 
 .modal-slider .slider-for img {
   width: 100%;
-  height: 300px;
+  height: 400px;
   object-fit: contain;
 }
 
 .modal-slider .slider-nav img {
-  height: 120px;
+  height: 80px;
   object-fit: cover;
   cursor: pointer;
   border-radius: 12px;
@@ -424,11 +433,11 @@ body {
 }
 
 .modal-slider .slider-for .slick-list {
-  min-height: 300px;
+  min-height: 400px;
 }
 
 .modal-slider .slider-nav .slick-list {
-  min-height: 120px;
+  min-height: 80px;
 }
 
 .modal-slider .slick-dots {
