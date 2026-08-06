@@ -45,6 +45,50 @@ $(document).ready(function () {
     ]
   });
 
+  $('.slider-for').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    fade: true,
+    infinite: true,
+    asNavFor: '.slider-nav',
+    adaptiveHeight: false,
+    prevArrow: '<button type="button" class="slick-prev d-md-none custom-arrow prev" aria-label="Previous"></button>',
+    nextArrow: '<button type="button" class="slick-next d-md-none custom-arrow next" aria-label="Next"></button>'
+  });
+
+  $('.slider-nav').slick({
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    asNavFor: '.slider-for',
+    infinite: true,
+    dots: true,
+    centerMode: true,
+    centerPadding: '0px',
+    focusOnSelect: true,
+    arrows: true,
+    prevArrow: '<button type="button" class="slick-prev custom-arrow prev small-nav" aria-label="Previous"></button>',
+    nextArrow: '<button type="button" class="slick-next custom-arrow next small-nav" aria-label="Next"></button>',
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: 998,
+        settings: {
+          slidesToShow: 2
+        }
+      },
+    ]
+  });
+
+  $('#modal-banner').on('shown.bs.modal', function () {
+    $('.slider-for, .slider-nav').slick('setPosition');
+  });
+
   // Refresh AOS after slider initialization to recalculate offsets
   AOS.refresh();
 
