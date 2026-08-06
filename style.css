@@ -381,14 +381,11 @@ body {
 /* Ẩn slider-nav cho đến khi Slick khởi tạo */
 .modal-slider .slider-nav {
   min-height: 80px;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.2s ease-in;
+  display: none;
 }
 
 .modal-slider .slider-nav.slick-initialized {
-  visibility: visible;
-  opacity: 1;
+  display: block !important;
 }
 
 .modal-slider .slider-for .slick-slide,

@@ -102,7 +102,7 @@ $(document).ready(function () {
     });
 
     // Show slider-nav sau khi Slick khởi tạo
-    $navSlider.css('visibility', 'visible').css('opacity', '1');
+    $navSlider.show();
   }
 
   // Xử lý modal banner
