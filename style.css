@@ -6,17 +6,13 @@
   --dark-green: #2C3E33;
   --bg-loang: linear-gradient(135deg, #2c3e33 0%, #4e6e5d 50%, #84a98c 100%);
   --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow-x: hidden;
 }
-
 
 body {
   font-family: var(--font-main);
   overflow-x: hidden;
   color: #333;
   background-color: #f9fbf9;
-  width: 100%;
-  max-width: 100%;
 }
 
 /* --- Typography --- */
@@ -384,10 +380,6 @@ body {
   display: none;
 }
 
-.modal-slider .slider-nav.slick-initialized {
-  display: block !important;
-}
-
 .modal-slider .slider-for .slick-slide,
 .modal-slider .slider-nav .slick-slide {
   display: flex;
@@ -537,8 +529,10 @@ body {
     padding: 18px 14px;
   }
 
-  .modal-slider .slider-nav {
-    display: none !important;
+  /* Hide thumbnail nav on very small screens until Slick initializes.
+     Using :not(.slick-initialized) so Slick can display it after init. */
+  .modal-slider .slider-nav:not(.slick-initialized) {
+    display: none;
   }
 
   .modal-slider .slick-dots {
